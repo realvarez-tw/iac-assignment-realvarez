@@ -1,0 +1,12 @@
+fileignoreconfig:
+- filename: .gitignore
+  checksum: c4b8225b39cdc46821a489081d6904f489246821c0c400867e6673cae20dce30
+- filename: ASSIGNMENT.md
+  checksum: e937d61e583a4fa812c90a9d856965b383904f36f45ee878429b49fd3465d760
+- filename: src/verify_user.py
+  checksum: 5cea04a1de2ec35c958136a9327dc1712703482617163aadea501099c137cf91
+- filename: tf_prerequisites/dynamodb.tf
+  checksum: 63dfffd5f0be6e3945de98565b48a5ccc1ca70a3492a5bcb1074e51bed871df8
+- filename: tf_prerequisites/iam-github.tf
+  checksum: a71577d1de468ba7eb9d61e50d0f3d2cfb43343338c50216e48bb539c1c54be1
+version: "1.0"
