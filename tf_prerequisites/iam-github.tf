@@ -35,81 +35,14 @@ resource "aws_iam_policy" "iam" {
           "iam:ListAttachedRolePolicies",
           "iam:AttachRolePolicy",
 
-          "ec2:*Instance*",
-          "ec2:DescribeAvailabilityZones",
-          "ec2:CreateVpc",
-          "ec2:CreateTags",
-          "ec2:DescribeVpcs",
-          "ec2:DescribeVpcAttribute",
-          "ec2:ModifyVpcAttribute",
-          "ec2:CreateInternetGateway",
-          "ec2:CreateRouteTable",
-          "ec2:CreateSubnet",
-          "ec2:CreateSecurityGroup",
-          "ec2:AttachInternetGateway",
-          "ec2:DescribeRouteTables",
-          "ec2:DescribeSubnets",
-          "ec2:DescribeSecurityGroups",
-          "ec2:DescribeInternetGateways",
-          "ec2:AssociateRouteTable",
-          "ec2:RevokeSecurityGroupEgress",
-          "ec2:AllocateAddress",
-          "ec2:CreateRoute",
-          "ec2:AuthorizeSecurityGroupIngress",
-          "ec2:AuthorizeSecurityGroupEgress",
-          "ec2:DescribeAddresses",
-          "ec2:CreateNatGateway",
-        
           "dynamodb:*",
 
-          "secretsmanager:DescribeSecret",
-          "secretsmanager:GetResourcePolicy",
-          "secretsmanager:GetSecretValue",
-
-          "rds:CreateDBParameterGroup",
-          "rds:AddTagsToResource",
-          "rds:ModifyDBParameterGroup",
-          "rds:DescribeDBParameterGroups",
-          "rds:DescribeDBParameters",
-          "rds:ListTagsForResource",
-          "rds:CreateDBSubnetGroup",
-          "rds:DescribeDBSubnetGroups",
-          "rds:CreateDBInstance",
-          "rds:GetDBInstance",
-          "rds:DescribeDBInstances",
-          
-          "ecs:CreateCluster",
-          "ecs:TagResource",
-          "ecs:DescribeClusters",
-          "ecs:PutClusterCapacityProviders",
-          
-          "ecr:CreateRepository",
-          "ecr:TagResource",
-          "ecr:DescribeRepositories",
-          "ecr:ListTagsForResource",
-          
           "logs:CreateLogGroup",
           "logs:TagResource",
           "logs:PutRetentionPolicy",
           "logs:DescribeLogGroups",
           "logs:ListTagsLogGroup",
           
-          "elasticloadbalancing:DescribeTargetGroups",
-          "elasticloadbalancing:CreateTargetGroup",
-          "elasticloadbalancing:AddTags",
-          "elasticloadbalancing:DescribeLoadBalancers",
-          "elasticloadbalancing:ModifyTargetGroupAttributes",
-          "elasticloadbalancing:DescribeTargetGroupAttributes",
-          "elasticloadbalancing:CreateLoadBalancer",
-          "elasticloadbalancing:ModifyLoadBalancer",
-          "elasticloadbalancing:GetLoadBalancer",
-          "elasticloadbalancing:ModifyLoadBalancerAttributes",
-          "elasticloadbalancing:DescribeTags",
-
-          
-          
-          
-
           # Likely to need more or different permissions for successful deployment
           # but you want to try to use least privilege principle where possible
         ],

@@ -1,4 +1,6 @@
 fileignoreconfig:
+- filename: .github/workflows/deploy.yaml
+  checksum: f13f0d4aef4f8fbc87c92dea228a8f9410f5203e5b0222bb8e20c997ebf67b65
 - filename: .gitignore
   checksum: c4b8225b39cdc46821a489081d6904f489246821c0c400867e6673cae20dce30
 - filename: ASSIGNMENT.md

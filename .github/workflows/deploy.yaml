@@ -5,24 +5,75 @@ on:
     branches: 
     - main
 
+env:
+  AWS_REGION: sa-east-1
+  IAM_ROLE: arn:aws:iam::160071257600:role/iac-assignment-realvarez-github-actions-role
+
+
 permissions:
   id-token: write
   contents: read
 
+# jobs:
+#   Terraform-Deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v3
+
+#       - name: Configure AWS Credentials
+#         uses: aws-actions/configure-aws-credentials@2ec54502e3e7b5d9591613811da6daded35caa19
+#         with:
+#           aws-region: "eu-west-2"
+#           role-to-assume: "arn:aws:iam::160071257600:role/GitHubActionsDeploymentRole"
+
+#       - name: Terraform Setup
+#         uses: hashicorp/setup-terraform@v3
+
+#       # Add steps to deploy your terraform code here
+
 jobs:
-  Terraform-Deploy:
+
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@2ec54502e3e7b5d9591613811da6daded35caa19
         with:
-          aws-region: "eu-west-2"
-          role-to-assume: "arn:aws:iam::160071257600:role/GitHubActionsDeploymentRole"
+          role-session-name: GitHubActionsSession
+          role-to-assume: ${{ env.IAM_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
 
-      - name: Terraform Setup
+      - name: Get aws identity
+        run: |
+          aws sts get-caller-identity
+
+      - name: Installing terraform 1.8.3
         uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.8.3"
 
-      # Add steps to deploy your terraform code here
+      - name: Get vars file from s3
+        run: |
+          aws s3 cp s3://realvarez-iac-lab-tfvars/dev.tfvars .
+
+      - name: Init terraform and deploy
+        run : |
+          terraform init
+
+      - name: Plan terraform
+        run : |
+          terraform plan -var-file="dev.tfvars"
+
+      - name: Deploy terraform 
+        run : |
+          terraform apply --auto-approve -var-file="dev.tfvars"
+       
