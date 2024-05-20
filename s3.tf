@@ -5,7 +5,6 @@ resource "aws_s3_bucket" "website_assignment_bucket" {
 
   tags = {
     Name        = format("%s-website", var.prefix)
-    Environment = "Dev"
   }
 }
 
@@ -31,11 +30,11 @@ resource "aws_s3_bucket_acl" "acl_website_assignment_bucket" {
   acl    = "private"
 }
 
-resource "aws_s3_object" "html_files_website" {
-  count  = 2
-  bucket = aws_s3_bucket.website_assignment_bucket.bucket
+# resource "aws_s3_object" "html_files_website" {
+#   count  = 2
+#   bucket = aws_s3_bucket.website_assignment_bucket.bucket
   
-  key    = var.html_files[count.index]
-  source = format("./html_files/%s", var.html_files[count.index])
-  acl    = "private"
-}
+#   key    = var.html_files[count.index]
+#   source = format("./html_files/%s", var.html_files[count.index])
+#   acl    = "private"
+# }
