@@ -12,7 +12,7 @@ fileignoreconfig:
 - filename: dynamodb.tf
   checksum: ad2f4e6356f5f9aa8f426027fdc39bae78c9359c1af91c7924459986a591a259
 - filename: s3.tf
-  checksum: 7508acce4e1dcf0863d95ce8ea8e3170caa38a356cad10f325a9638b6c2d4c3b
+  checksum: 298423dcdc03e4c53570ff965d249bead6c831cb1629203e893fe538aefc26ad
 - filename: src/verify_user.py
   checksum: 5cea04a1de2ec35c958136a9327dc1712703482617163aadea501099c137cf91
 - filename: tf_prerequisites/dynamodb.tf

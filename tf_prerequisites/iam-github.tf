@@ -23,7 +23,7 @@ resource "aws_iam_policy" "iam" {
           "s3:CreateBucket",
           "s3:GetObject",
           "s3:PutObject",
-          "s3:HeadBucket",
+          "s3:*",
 
           "iam:CreateRole",
           "iam:PassRole",
@@ -49,12 +49,17 @@ resource "aws_iam_policy" "iam" {
           "apigateway:POST",
           "apigateway:GET",
           "apigateway:TagResource",
+          "apigateway:DELETE",
 
           "lambda:CreateFunction",
           "lambda:TagResource",
           "lambda:GetFunction",
           "lambda:ListVersionsByFunction",
-          "lambda:GetFunctionCodeSigningConfig"
+          "lambda:GetFunctionCodeSigningConfig",
+          "lambda:AddPermission",
+          "lambda:GetPolicy",
+          "lambda:RemovePermission"
+
           # Likely to need more or different permissions for successful deployment
           # but you want to try to use least privilege principle where possible
         ],
