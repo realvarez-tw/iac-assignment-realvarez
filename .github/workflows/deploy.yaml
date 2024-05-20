@@ -60,6 +60,21 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "1.8.3"
+      - name: Validating terraform
+        run: |
+          terraform validate
+
+      - name: Formatting fmt
+        run: |
+          terraform fmt
+
+      - name: Install tflint
+        run: |
+          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash 
+          
+      - name: Init tflint and run
+        run: |
+          tflint --init && tflint
 
       - name: Get vars file from s3
         run: |

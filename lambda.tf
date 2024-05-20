@@ -1,5 +1,6 @@
 module "lambda_user_registry" {
   source = "terraform-aws-modules/lambda/aws"
+  version = "7.4.0"
 
   function_name = format("%s-users_register", var.prefix)
   description   = "Lambda function for user registry"
@@ -47,7 +48,8 @@ module "lambda_user_registry" {
 
 module "lambda_user_verify" {
   source = "terraform-aws-modules/lambda/aws"
-
+  version = "7.4.0"
+  
   function_name = format("%s-users_verify", var.prefix)
   description   = "Lambda function for user verify"
   handler       = "verify_user.lambda_handler"
