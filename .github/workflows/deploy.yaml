@@ -14,24 +14,6 @@ permissions:
   id-token: write
   contents: read
 
-# jobs:
-#   Terraform-Deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v3
-
-#       - name: Configure AWS Credentials
-#         uses: aws-actions/configure-aws-credentials@2ec54502e3e7b5d9591613811da6daded35caa19
-#         with:
-#           aws-region: "eu-west-2"
-#           role-to-assume: "arn:aws:iam::160071257600:role/GitHubActionsDeploymentRole"
-
-#       - name: Terraform Setup
-#         uses: hashicorp/setup-terraform@v3
-
-#       # Add steps to deploy your terraform code here
-
 jobs:
 
   deploy:
@@ -60,6 +42,11 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "1.8.3"
+      
+      - name: Init terraform and deploy
+        run : |
+          terraform init
+
       - name: Validating terraform
         run: |
           terraform validate
@@ -79,10 +66,6 @@ jobs:
       - name: Get vars file from s3
         run: |
           aws s3 cp s3://iac-assignment-realvarez-tfvars/dev.tfvars .
-
-      - name: Init terraform and deploy
-        run : |
-          terraform init
 
       - name: Deploy terraform 
         run : |
