@@ -9,13 +9,13 @@ variable "region" {
 }
 
 variable "endpoint_register" {
-  type = string
+  type        = string
   description = "value"
 
 }
 
 variable "endpoint_verify" {
-  type = string
+  type        = string
   description = "value"
 }
 

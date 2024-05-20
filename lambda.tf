@@ -7,14 +7,14 @@ module "lambda_user_registry" {
   runtime       = "python3.10"
 
   source_path = "./src/register_user.py"
-	publish                = true
+  publish     = true
 
-	environment_variables = {
-    DB_TABLE_NAME      = aws_dynamodb_table.users_table.name
-    Serverless = "Terraform"
+  environment_variables = {
+    DB_TABLE_NAME = aws_dynamodb_table.users_table.name
+    Serverless    = "Terraform"
   }
 
-	cloudwatch_logs_log_group_class = "STANDARD"
+  cloudwatch_logs_log_group_class = "STANDARD"
 
   cors = {
     allow_credentials = true
@@ -25,16 +25,16 @@ module "lambda_user_registry" {
     max_age           = 86400
   }
 
-  invoke_mode = "RESPONSE_STREAM"
+  invoke_mode              = "RESPONSE_STREAM"
   attach_policy_statements = true
-	policy_statements = {
+  policy_statements = {
     dynamodb = {
-      effect    = "Allow",
-      actions   = [
-				"dynamodb:PutItem",
+      effect = "Allow",
+      actions = [
+        "dynamodb:PutItem",
         "dynamodb:UpdateItem",
         "dynamodb:BatchWriteItem"
-			],
+      ],
       resources = [aws_dynamodb_table.users_table.arn]
     }
   }
@@ -54,14 +54,14 @@ module "lambda_user_verify" {
   runtime       = "python3.10"
 
   source_path = "./src/verify_user.py"
-	publish                = true
+  publish     = true
 
-	environment_variables = {
-    DB_TABLE_NAME      = aws_dynamodb_table.users_table.name
-    WEBSITE_S3         = aws_s3_bucket.website_assignment_bucket.id
+  environment_variables = {
+    DB_TABLE_NAME = aws_dynamodb_table.users_table.name
+    WEBSITE_S3    = aws_s3_bucket.website_assignment_bucket.id
   }
 
-	cloudwatch_logs_log_group_class = "STANDARD"
+  cloudwatch_logs_log_group_class = "STANDARD"
 
   cors = {
     allow_credentials = true
@@ -72,25 +72,25 @@ module "lambda_user_verify" {
     max_age           = 86400
   }
 
-  invoke_mode = "RESPONSE_STREAM"
+  invoke_mode              = "RESPONSE_STREAM"
   attach_policy_statements = true
-	policy_statements = {
+  policy_statements = {
     dynamodb = {
-      effect    = "Allow",
-      actions   = [
+      effect = "Allow",
+      actions = [
         "dynamodb:GetItem"
-			],
+      ],
       resources = [aws_dynamodb_table.users_table.arn]
     },
     s3_read = {
-      effect    = "Allow",
-      actions   = [
-				"s3:GetObject",
+      effect = "Allow",
+      actions = [
+        "s3:GetObject",
         "s3:ListBucket"
-			],
+      ],
       resources = [
-				format("%s/*", aws_s3_bucket.website_assignment_bucket.arn)
-			]
+        format("%s/*", aws_s3_bucket.website_assignment_bucket.arn)
+      ]
     }
   }
   tags = {
