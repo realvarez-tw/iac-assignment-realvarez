@@ -63,7 +63,7 @@ jobs:
 
       - name: Get vars file from s3
         run: |
-          aws s3 cp s3://realvarez-iac-lab-tfvars/dev.tfvars .
+          aws s3 cp s3://iac-assignment-realvarez-tfvars/dev.tfvars .
 
       - name: Init terraform and deploy
         run : |
