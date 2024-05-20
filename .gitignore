@@ -36,3 +36,8 @@ terraform.rc
 test_modules/
 *tfstate*
 *.terraform*
+
+builds/
+
+.terraform/
+.DS_Store

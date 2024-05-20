@@ -1,6 +1,8 @@
 resource "aws_s3_bucket" "tf_state_bucket" {
   bucket = format("%s-tfstate", var.prefix)
   
+  force_destroy = true
+
   tags = {
     Name        = format("%s-tfstate", var.prefix)
     Environment = "Dev"
@@ -13,7 +15,9 @@ resource "aws_s3_bucket" "tf_state_bucket" {
 
 resource "aws_s3_bucket" "tf_vars_bucket" {
   bucket = format("%s-tfvars", var.prefix)
-  
+
+  force_destroy = true
+
   tags = {
     Name        = format("%s-tfvars", var.prefix)
     Environment = "Dev"
