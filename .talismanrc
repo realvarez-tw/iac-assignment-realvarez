@@ -3,6 +3,8 @@ fileignoreconfig:
   checksum: c4b8225b39cdc46821a489081d6904f489246821c0c400867e6673cae20dce30
 - filename: ASSIGNMENT.md
   checksum: e937d61e583a4fa812c90a9d856965b383904f36f45ee878429b49fd3465d760
+- filename: backend.tf
+  checksum: 2017d4505ab317087366ccd3f86a9c1ef6fce0df521db999330b81dcfd1c0c04
 - filename: src/verify_user.py
   checksum: 5cea04a1de2ec35c958136a9327dc1712703482617163aadea501099c137cf91
 - filename: tf_prerequisites/dynamodb.tf
