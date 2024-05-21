@@ -11,14 +11,16 @@ variable "region" {
 variable "endpoint_register" {
   type        = string
   description = "value"
-
+  default = "register"
 }
 
 variable "endpoint_verify" {
   type        = string
   description = "value"
+  default = ""
 }
 
 variable "html_files" {
   type = list(string)
+  default = ["index.html", "error.html"]
 }

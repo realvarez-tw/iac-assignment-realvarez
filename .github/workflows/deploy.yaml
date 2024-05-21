@@ -67,6 +67,10 @@ jobs:
         run: |
           aws s3 cp s3://iac-assignment-realvarez-tfvars/dev.tfvars .
 
+      - name: Testing terraform (Terraform plan) 
+        run : |
+          terraform plan -var-file="dev.tfvars"
+
       - name: Deploy terraform 
         run : |
           terraform apply --auto-approve -var-file="dev.tfvars"
