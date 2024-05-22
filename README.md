@@ -62,6 +62,39 @@ No outputs.
 ----------------------------------
 
 ## Using the code
-###  Terraform prerequisites
+This terraform code use aws cli to connect to aws to make deploy if its executed in local enviroment, the first part, tf_prerequisites must be executed en local because contain prerequisites needed for the github actions enviroment.
+So, before execute, you need first log in aws cli using command
 
-This code repository contain three folders important folders used in the deploy
+`aws sso login`
+
+
+###  Terraform prerequisites
+Once loged in aws account in the cli, you will need apply the content of the terraform prerequisites
+
+You could change the values in the file `variables.tf` to change the prefix, region and repository name 
+
+```
+cd tf_prerequisites
+terraform apply
+```
+
+terraform will show you the plan to execute and will ask for confirmation, press `yes` to accept the plan and wait for the execution, this will create 
+
+- S3 Bucket to store tf state
+- Dynamo table to store lock tf state
+- IAM role to deploy in github actions
+
+You will need charge manually a variables file `dev.tfvars` in the s3 created 
+
+### Base IAC
+
+The code in the main folder execute the base arquitecture in the image in the overview.
+For the execution, you will need enter the file tf var in the execution of the terraform plan and terraform apply or enter the variables values manually.
+#### lambda.tf
+Use a module of terraform to create the two lambdas functions with necesities and build and deploy the code contained in src in the lambda.
+#### api_gw2.tf
+Deploy the resources for the api gw v2 and the conections with the lambdas functions
+#### dynamodb.tf
+Create the dynamodb table to store registers users info
+#### s3.tf
+Create the bucket to store the webpage and upload the files in the folder `html_folder` in the bucket created

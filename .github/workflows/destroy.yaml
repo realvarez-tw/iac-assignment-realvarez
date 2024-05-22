@@ -1,4 +1,4 @@
-ame: Destroy Infra
+name: Destroy Infra
 
 on: workflow_dispatch
 
